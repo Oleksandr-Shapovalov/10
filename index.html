@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../nullstyle.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form_container">
+      <h1>Register</h1>
+      <form class="form" name="form">
+        <div class="fields">
+          <div class="name input_box">
+            <input type="text" id="name" name="name" required />
+            <label for="name" class="name_label">Name:</label>
+          </div>
+          <div class="email input_box">
+            <input type="email" id="email" name="email" required />
+            <label for="email" class="email_label"> Email:</label>
+          </div>
+          <div class="password input_box">
+            <input type="password" id="password" name="password" required />
+            <label for="password" class="password_label">Password:</label>
+          </div>
+          <div class="password_confirm input_box">
+            <input
+              type="password"
+              id="password_confirm"
+              name="password_confirm"
+              required
+            />
+            <label for="password_confirm" class="password_confirm_label">
+              Repit password:</label
+            >
+          </div>
+          <div class="number input_box">
+            <input type="tel" id="number" name="number" required />
+            <label for="number" class="number_label">Phone number:</label>
+          </div>
+        </div>
+
+        <div class="data_birth">
+          <select name="data" id="data"></select>
+          <span>/</span>
+          <select name="month" id="month"></select>
+          <span>/</span>
+          <select name="year" id="year"></select>
+          <span>Enter your date of birth</span>
+        </div>
+        <div class="sex">
+          <input type="radio" name="sex" id="men" />
+          <label class="men" for="men">Men</label>
+          <span>/</span>
+          <input type="radio" name="sex" id="women" />
+          <label class="women" for="women">Women</label>
+          <span>Indicate your sex</span>
+        </div>
+        <div class="termsOFuse">
+          <input type="checkbox" name="checkbox" id="checkbox" required / >
+          <label class="checkbox" for="checkbox">
+            I agree with the <a href="#">Terms of use</a></label
+          >
+        </div>
+        <button class="BTNreg" type="submit">Register</button>
+      </form>
+    </div>
+    <script>
+      document.querySelector("h1").addEventListener("click", () => {
+        document.forms["form"].reset();
+      });
+      const email = document.querySelector("#email");
+      email.addEventListener("input", () => {
+        if (email.value) {
+          email.classList.add("txt");
+        } else email.classList.remove("txt");
+      });
+      const BTNreg = document.querySelector(".BTNreg");
+      BTNreg.addEventListener("touchstart", () => {
+        BTNreg.style.background = "rgba(8, 131, 35, 0.707)";
+      });
+      BTNreg.addEventListener("touchend", () => {
+        BTNreg.style.background = "rgba(8, 131, 35, 0.407)";
+      });
+      const dataSelect = document.querySelector("#data");
+      const monthSelect = document.querySelector("#month");
+      const yearSelect = document.querySelector("#year");
+      dataCreate(dataSelect, 31);
+      dataCreate(monthSelect, 12);
+      dataCreate(yearSelect, 122, true);
+      function dataCreate(el, iterations, years = false) {
+        let fragment = document.createDocumentFragment();
+        if (years) {
+          for (let i = 0; i < iterations; i++) {
+            const item = ` <option value="${2022 - i}">${2022 - i} </option>`;
+            fragment += item;
+          }
+        } else {
+          for (let i = 0; i < iterations; i++) {
+            const item = ` <option value="${i + 1} ">${i + 1}</option>`;
+            fragment += item;
+          }
+        }
+
+        el.insertAdjacentHTML("afterbegin", fragment);
+      }
+    </script>
+  </body>
+</html>
